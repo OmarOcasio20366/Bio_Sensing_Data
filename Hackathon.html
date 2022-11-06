@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<title>Hackathon Python thing</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+	
+
+    <py-env>
+        - matplotlib
+    </py-env>
+</head>
+<body>
+
+
+	<input type='file' id='uploadFile' accept='.csv'>
+	<button id='uploadConfirm'>Upload Button</button>
+	
+	
+	<script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+	<script>
+		//const TempData = [];
+		const uploadConfirm = document.getElementById('uploadConfirm').addEventListener('click', ()=> {
+			Papa.parse(document.getElementById('uploadFile').files[0],
+			{
+				download: true,
+				header: true,
+				skipEmptyLines: true,
+				complete: function(results){
+					console.log(results);
+					//May be needed for graphing
+					//console.log(results.data[0].Temp)
+					//for (i = 0; i < results.data).length; i++){
+						//TempData.push(results.data[i].Temp);
+					//}
+					//console.log(TempData);
+				}
+			});
+		});
+		
+		var chart = new Chart('chart', {
+			type: 'horizontalBar',
+			data: {
+				labels: ['A', 'B', 'C'],
+				datasets: [
+				{
+					data: [10, 20, 30]
+				}
+				]
+			}
+		});
+		
+		
+	</script>
+
+	<canvas id="chart"></canvas>
+
+
+    <h1>Matplotlib</h1>
+    <py-script> print("My Lineplot")
+	
+	#Python Code Goes Here ...
+	
+	# Import libraries
+	import pandas as pd
+	import matplotlib.pyplot as plt
+	from pyodide.http import open_url
+	
+	
+	fig, ax = plt.subplots()
+
+	year_1 = [19.49, 19.50, 19.51, 19.52, 19.53, 19.54]
+	population_1 = [23.97636719, 23.98144531, 23.97636719, 24.02695313, 24.03203125, 24.01679688]
+
+	year_2 = [2016, 2017, 2018, 2019, 2020, 2021]
+	population_2 = [43, 43, 44, 44, 45, 45]
+
+	plt.plot(year_1, population_1, marker='o', linestyle='--', color='g', label='Country 1')
+	#plt.plot(year_2, population_2,  marker='d', linestyle='-', color='r', label='Country 2')
+
+	plt.xlabel('Time')
+	plt.title('Year vs Population')
+	plt.legend(loc='lower right')
+
+	fig
+	
+	</py-script>
+</body>
+</html>
