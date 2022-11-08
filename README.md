@@ -1,6 +1,6 @@
 Team Jazz Frogs Bio-Sensor Project
 	You having fun yet? 'Cause I am!
-	https://docs.google.com/presentation/d/1IWVcTliroF3aWzqa_QzDckTyinH-rD7oZt0c3ltzTbc/edit?usp=sharing
+	
 
 Project Objective: This program is made to take csv files from 
 				biosensors and make 4 charts from each file.
